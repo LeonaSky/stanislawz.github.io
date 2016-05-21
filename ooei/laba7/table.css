@@ -1,0 +1,24 @@
+table{
+		margin: 10px 0;
+		text-align: center;
+		border-collapse: separate;
+		border: 1px solid #ddd;
+		border-spacing: 10px;
+		border-radius: 3px;
+		background: #fdfdfd;
+		font-size: 14px;
+		width: auto;
+}
+caption{
+		padding: 10px;
+		font-size: 18px;
+}
+
+td,th{
+		border: 1px solid #ddd;
+		padding: 5px;
+		border-radius: 3px;
+}
+th{
+		background: #E4E4E4;
+}

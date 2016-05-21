@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Лабораторна робота №7</title> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<link rel="stylesheet" href="table.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+	<script src="xml2json.js"></script>
+	<script src="jquery.xdomainajax.js"></script>
+	<script>
+		function xmlLoader(){
+			$.ajax({
+			    url: 'http://bank-ua.com/export/currrate.xml',
+			    dataType: "xml",
+			    type: 'GET',
+			    success: function(res) {
+					var myXML = res.responseText;
+					// Конвертация xml2Json
+					var JSONConvertedXML = $.xml2json(myXML);
+					
+					$('#main').append('<caption>Курс валют НБУ станом на '+ JSONConvertedXML.item[0].date +
+					'</caption><tr><th>К-сть</th><th>Валюта</th><th>Курс</th><th>Зміна</th><th>Код валюти</th></tr>');
+					for(var i = JSONConvertedXML.item.length - 1; i >= 0; i--){
+						$('#main').append('<tr><td>'+JSONConvertedXML.item[i].size+'</td><td>'+JSONConvertedXML.item[i].name+
+						'</td><td>'+JSONConvertedXML.item[i].rate+'</td><td>'+JSONConvertedXML.item[i].change+'</td><td>'+
+						JSONConvertedXML.item[i].char3 + '</td></tr>');
+					}
+					$.mobile.hidePageLoadingMsg();
+			    }
+			});
+		}
+		
+		$( document ).delegate("#home", "pageshow", function() {
+			$.mobile.showPageLoadingMsg();
+		  	xmlLoader();
+		});
+	</script>
+</head> 
+
+<body> 
+	<div data-role="page" id="home" align="center"> 
+		<table id="main" class="simple-little-table"></table>
+	</div>
+</body>
+</html>
