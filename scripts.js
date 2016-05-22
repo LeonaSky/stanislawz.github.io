@@ -40,11 +40,15 @@ function validate_form()
 {
 	valid = true;
 
-        if ( document.contact_form.fname.value == "" || document.contact_form.lname.value == "")
+        if ( document.contact_form.fname.value == "")
         {
-                alert ( "Пожалуйста заполните все поля формы." );
+                alert ( "Пожалуйста заполните поле 'Имя'." );
+                valid = false;
+        } else
+        if ( document.contact_form.lname.value == "")
+        {
+                alert ( "Пожалуйста заполните поле 'Фамилия'." );
                 valid = false;
         }
-
         return valid;
 }
