@@ -35,3 +35,16 @@ $(document).ready(function() {
 			$('#scrollup').fadeOut('fast');
 	});
 });
+
+function validate_form()
+{
+	valid = true;
+
+        if ( document.contact_form.fname.value == "" || document.contact_form.lname.value == "")
+        {
+                alert ( "Пожалуйста заполните поле все поля." );
+                valid = false;
+        }
+
+        return valid;
+}
