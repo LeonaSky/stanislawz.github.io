@@ -40,9 +40,9 @@ function validate_form()
 {
 	valid = true;
 
-        if ( document.contact_form.fname.value == "")
+        if ( document.contact_form.fname.value == "" || document.contact_form.lname.value == "")
         {
-                alert ( "Пожалуйста заполните поле все поля." );
+                alert ( "Пожалуйста заполните все поля формы." );
                 valid = false;
         }
 
